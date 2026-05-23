@@ -3,6 +3,7 @@ import Image from "next/image";
 import { GameProps } from "@/utils/types/game";
 import Link from "next/link";
 import { BsArrowRightSquare } from 'react-icons/bs';
+import { Input } from "@/components/input";
 
 async function getDalyGames() {
   try {
@@ -13,9 +14,20 @@ async function getDalyGames() {
   }
 }
 
+async function getGameData() {
+  try {
+    const res = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=games`,{next: {revalidate: 320}});
+    return res.json();
+  } catch (err) {    
+    throw new Error("Failed to fetch data");
+  }
+
+}
+
 export default async function Home() {
 
   const dailyGames: GameProps = await getDalyGames();
+  const data: GameProps[] = await getGameData();
 
   console.log(dailyGames);
 
@@ -41,6 +53,19 @@ export default async function Home() {
           </div>
          </section>
         </Link>
+
+        <Input />
+
+        <h2 className="text-center font-bold text-xl mt-8 mb-5">
+          Jogos para conhecer
+        </h2>
+
+        <section>
+          {data.map((item) => (
+            <h1>{item.title}</h1>
+          ))}
+        </section>
+
      </Container>
    </main>
   );
