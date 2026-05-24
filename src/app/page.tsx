@@ -4,6 +4,7 @@ import { GameProps } from "@/utils/types/game";
 import Link from "next/link";
 import { BsArrowRightSquare } from 'react-icons/bs';
 import { Input } from "@/components/input";
+import { GameCard } from "@/components/gameCard";
 
 async function getDalyGames() {
   try {
@@ -60,9 +61,9 @@ export default async function Home() {
           Jogos para conhecer
         </h2>
 
-        <section>
+        <section className="grid gap-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {data.map((item) => (
-            <h1>{item.title}</h1>
+            <GameCard key={item.id} data={item} />
           ))}
         </section>
 
