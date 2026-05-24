@@ -7,7 +7,9 @@ import { title } from "process";
 async function getData(title: string) {
   console.log(`Searching for game: ${title}`);
     try {
-      const res = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game&title=${title}`);
+    //tira % e deixa o texto normal
+      const decodeTitle = decodeURI(title);
+      const res = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game&title=${decodeTitle}`,{next: {revalidate: 320}});
       const data = res.json();
       return data;
     } catch (err) {
@@ -18,10 +20,10 @@ async function getData(title: string) {
    export default async function Search({
       params,
     }: {
-      params: { title: string }
+      params: Promise<{ title: string }>
     }) {
 
-     const { title } = params;
+     const { title } = await params;
 
     const games: GameProps[] = await getData(title);
     
