@@ -16,10 +16,6 @@ export function Input() {
         router.push(`/game/search/${input}`);
 
     }
-
-
-    
-
     return (
         <form onSubmit={handleSearch} 
         className="w-full bg-slate-200 my-5 flex gap-2 items-center justify-between rounded-lg p-2">
