@@ -1,6 +1,13 @@
 import { Container } from "@/components/container";
 import Image from "next/image";
 import { FaShareAlt } from "react-icons/fa";
+import FavoriteCard from "./components/favorite";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Perfil - DalyGames",
+    description: "Veja seus jogos favoritos, configurações e compartilhe seu perfil com amigos.",
+}
 
 export default function Profile() {
     return (
@@ -20,7 +27,8 @@ export default function Profile() {
                     <h1 className="font-bold text-2xl">Sujeito Programador</h1>
                     </div>
 
-                    <div className="sm:absolute top-0 right-0 gap-3 flex items-center justify-center mt-2">
+                    {/* <div className="sm:absolute top-0 right-0 gap-3 flex items-center justify-center mt-2"> */}
+                    <div className="gap-3 flex items-center justify-center mt-2 self-center sm:self-start">
                         <button className="bg-gray-700 px-4 py-3 rounded-lg text-white">
                             Configurações
                         </button>
@@ -28,7 +36,20 @@ export default function Profile() {
                             <FaShareAlt size={24} color="#fff" />
                         </button>
                     </div>
-                </section>                
+                </section>   
+
+                <section className="flex flex-wrap gap-5 flex-col md:flex-row">
+                   <div className="flex-grow flex-wrap">
+                     <FavoriteCard />
+                    </div>
+                    <div className="flex-grow flex-wrap">
+                     <FavoriteCard />
+                    </div>
+                    <div className="flex-grow flex-wrap">
+                     <FavoriteCard />
+                   </div>
+                </section>
+
             </Container>
         </main>
     )
