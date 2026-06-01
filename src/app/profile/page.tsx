@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FaShareAlt } from "react-icons/fa";
 import FavoriteCard from "./components/favorite";
 import { Metadata } from "next";
+import FavoriteCardTest from "./components/FaviriteTest";
 
 export const metadata: Metadata = {
     title: "Perfil - DalyGames",
@@ -40,15 +41,17 @@ export default function Profile() {
 
                 <section className="flex flex-wrap gap-5 flex-col md:flex-row">
                    <div className="flex-grow flex-wrap">
-                     <FavoriteCard />
+                     <FavoriteCard id={1} />
                     </div>
                     <div className="flex-grow flex-wrap">
-                     <FavoriteCard />
+                     <FavoriteCard id={2} />
                     </div>
                     <div className="flex-grow flex-wrap">
-                     <FavoriteCard />
+                     <FavoriteCard id={3}   />
                    </div>
                 </section>
+
+                <FavoriteCardTest id={1} />
 
             </Container>
         </main>
